@@ -29,8 +29,16 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## What is it?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Todo list with the functionality to add an item, edit and delete.
+This is also set for Local storage.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## information to remember.
+
+Using the map syntax caused me a lot of issues.
+
+Remember: map will always return the same number of elements as the original array. For example, if there are 5 objects in an array, the result will also contain 5 objects. Those objects can be transformed or changed, but you cannot add or remove elements with map.
+
+Index - can be an issue especially with local storange and index of the map item.
+
