@@ -25,7 +25,8 @@ export default function TodoState() {
 
 const [todoData,setTodoData]=useState([])  // main data
 
-const [editModeKey,setEditModeKey]=useState(-1)
+const [editModeKey,setEditModeKey]=useState(-1) // use onclick the edit/delete
+const [editTempValue, setEditTempValue]= useState("")
 
 
 const [inputValues,SetInputValues]=useState({
@@ -34,7 +35,7 @@ editedValue:"" // original input value
 
 })
 
-const [indexKey,setIndexKey]=useState(0)
+const [indexKey,setIndexKey]=useState(0)  // gives all todo index value - will stand at the data.length
 
 
 /*  MAIN TODO INPUT */
@@ -57,32 +58,26 @@ console.log(todoData)
 /* EDIT TODO MODE */
 
 const editToDOInput = (index)=>{
-console.log(index)
-  todoData.map(item => {
-    
-    if(editModeKey  === index ){
-          setChangeBoo({editMode:!changeBoo.editMode}) 
-          console.log(item.id,index)
-      
-    }
-    else{
-  
-    }
-    
-  })
+  setEditModeKey(index)
+  setEditTempValue(todoData[index].name)
+  console.log(todoData[index].name,'wanted state',editTempValue)
 
+}
 
+const saveEdits =(id)=>{
 
+setTodoData(todoData.map((item,index)=>
 
-
-  
- 
+item.id === id ? {...item,name:editTempValue} : item
+))
+setEditModeKey(-1)
+console.log(id,'id',editTempValue)
 }
 
 const editedToDoValue = (e)=>{
 
   SetInputValues(prev => ({ ...prev, mainInput:e.target.value}))
-
+  setEditTempValue(e.target.value)
 
 }
 
@@ -97,6 +92,8 @@ const editedToDoValue = (e)=>{
               editToDOInput={editToDOInput}
               editModeKey={editModeKey} 
               editedToDoValue={editedToDoValue}
+              editTempValue={editTempValue}
+              saveEdits={saveEdits}
               
               />
               
